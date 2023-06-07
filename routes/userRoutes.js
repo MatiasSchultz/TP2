@@ -34,14 +34,19 @@ userRoutes.post("/", async (req, res) => {
 
 userRoutes.post("/login", async (req, res) => {
 	try {
-		const { username, password } = req.body;
+		const { user, pass } = req.body;
 		const existingUser = await User.findOne({
+			attributes: ["id", "username", "password", "pokedex"],
 			where: {
-				username: username,
-				password: password,
+				username: user,
+				password: pass,
 			},
 		});
-		res.status(201).send({ message: "Usuario encontrado", existingUser });
+		if (existingUser !== null) {
+			res.status(201).send({ encontro: true, existingUser });
+		} else {
+			res.status(201).send({ encontro: false });
+		}
 	} catch (error) {
 		console.error("Error al buscar el usuario:", error);
 		res.status(500).send({ message: "Error al buscar el usuario" });
