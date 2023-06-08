@@ -5,12 +5,14 @@ class User extends Model {}
 
 User.init(
 	{
+		//agregar un email y agregarle la key validate: {isEmail: true,},
 		username: {
-			type: DT.STRING,
+			type: DT.STRING(),
 			allowNull: false,
+			unique: true,
 		},
 		password: {
-			type: DT.STRING,
+			type: DT.STRING(),
 			allowNull: false,
 		},
 		pokedex: {

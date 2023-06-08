@@ -7,15 +7,13 @@ import cors from "cors";
 
 const corsOptions = {
 	origin: "*",
-	credentials: true, //access-control-allow-credentials:true
+	credentials: true,
 	optionSuccessStatus: 200,
 };
 
-app.use(cors(corsOptions));
-
-// Middleware para analizar el cuerpo de la solicitud como JSON
-app.use(express.json());
 //midlewares
+app.use(cors(corsOptions));
+app.use(express.json());
 app.use(indexRoutes);
 
 app.use((req, res, next) => {
