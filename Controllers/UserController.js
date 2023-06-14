@@ -1,4 +1,3 @@
-import User from "../Models/User.js";
 import UserAction from "../Actions/UserAction.js";
 
 const action = new UserAction();
@@ -37,8 +36,8 @@ class UserController {
 
 	login = async (req, res) => {
 		try {
-			const { user, pass } = req.body;
-			const existingUser = await action.login(user, pass);
+			const { username, password } = req.body;
+			const existingUser = await action.login(username, password);
 			if (existingUser !== null) {
 				res.status(201).send({ encontro: true, existingUser });
 			} else {

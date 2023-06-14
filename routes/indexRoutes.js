@@ -4,5 +4,6 @@ import userRoutes from "./userRoutes.js";
 const indexRoutes = Router();
 
 indexRoutes.use("/users", userRoutes);
+indexRoutes.use("/battles", battleRoutes);
 
 export default indexRoutes;
