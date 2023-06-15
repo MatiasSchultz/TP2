@@ -1,8 +1,7 @@
 import { Router } from "express";
 import BattleController from "../Controllers/BattleController.js";
-import Battle from "../Models/User.js";
 
-const battleController = new UserController();
+const battleController = new BattleController();
 const battleRoutes = Router();
 
 battleRoutes.get("/", battleController.getAll);

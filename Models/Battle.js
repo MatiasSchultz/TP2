@@ -18,9 +18,9 @@ Battle.init(
 			type: DT.INTEGER(),
 			allowNull: false,
 		},
-        winner: {
-            type: DT.BOOLEAN(),
-        },
+		winner: {
+			type: DT.BOOLEAN(),
+		},
 	},
 	{
 		sequelize: connection,
@@ -28,4 +28,4 @@ Battle.init(
 	}
 );
 
-export default User;
+export default Battle;
