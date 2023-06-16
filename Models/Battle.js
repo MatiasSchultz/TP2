@@ -6,10 +6,6 @@ class Battle extends Model {}
 Battle.init(
 	{
 		//agregar un email y agregarle la key validate: {isEmail: true,},
-		userID: {
-			type: DT.INTEGER(),
-			allowNull: false,
-		},
 		userPokemon: {
 			type: DT.INTEGER(),
 			allowNull: false,
@@ -24,7 +20,7 @@ Battle.init(
 	},
 	{
 		sequelize: connection,
-		modelName: "Batlle",
+		modelName: "Battle",
 	}
 );
 

@@ -1,4 +1,4 @@
-import Battle from "../Models/Battle.js";
+import { Battle } from "../Models/index.js";
 
 class BattleAction {
 	constructor() {}
@@ -10,7 +10,7 @@ class BattleAction {
 			userID,
 			userPokemon,
 			enemyPokemon,
-            winner,
+			winner,
 		});
 		return newBattle;
 	};
@@ -31,7 +31,6 @@ class BattleAction {
 		});
 		return existingBattle;
 	};
-
 }
 
 export default BattleAction;

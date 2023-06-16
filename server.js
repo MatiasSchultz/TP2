@@ -4,6 +4,7 @@ import { serverPort } from "./config/config.js";
 import indexRoutes from "./routes/indexRoutes.js";
 import connection from "./connection/connection.js";
 import cors from "cors";
+import userSeed from "./Seed/userSeed.js";
 
 const corsOptions = {
 	origin: "*",
@@ -29,3 +30,4 @@ await connection.sync({ force: false }).then(() => {
 		console.log("server ok http://localhost:8080");
 	});
 });
+//.then(userSeed);
