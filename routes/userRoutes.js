@@ -11,4 +11,6 @@ userRoutes.post("/", userController.createUser);
 
 userRoutes.post("/login", userController.login);
 
+userRoutes.put("/:id", userController.updateUser);
+
 export default userRoutes;

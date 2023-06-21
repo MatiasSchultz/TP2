@@ -48,6 +48,26 @@ class UserController {
 			res.status(500).send({ message: "Error al buscar el usuario" });
 		}
 	};
+
+		updateUser = async (req, res) => {
+		try {
+			const { id } = req.params;
+			const { updatedFields } = req.body;
+			const result = await action.updateUser(id, updatedFields);
+			// tiran null y undefined, no entran bien los parametros.
+			console.log("BACK >", id)
+			console.log("BACK >", updatedFields)
+			if (result[0] === 1) {
+				res.send({ message: "Usuario actualizado exitosamente", updated: true });
+			} else {
+				res.send({ message: "No se pudo actualizar el usuario", updated: false });
+			}
+		} catch (error) {
+			console.error("Error al actualizar el usuario:", error);
+			res.status(500).send({ message: "Error al actualizar el usuario" });
+		}
+	};
+
 }
 
 export default UserController;

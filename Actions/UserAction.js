@@ -32,20 +32,13 @@ class UserAction {
 		return existingUser;
 	};
 
-	updateUser = async (id) => {
-		const valor = await User.update(
-			{
-				campo: "nuevo_valor",
-				otro_campo: "otro_valor",
-				// ...
+	updateUser = async (id, updatedFields) => {
+		const result = await User.update(updatedFields, {
+			where: {
+				id: id,
 			},
-			{
-				where: {
-					id: id,
-				},
-			}
-		);
-		return valor;
+		});
+		return result;
 	};
 
 	nombre = async () => {
