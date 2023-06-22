@@ -32,6 +32,15 @@ class UserAction {
 		return existingUser;
 	};
 
+	getByUsername = async (username) => {
+		const existingUser = await User.findOne({
+			where: {
+				username,
+			},
+		});
+		return existingUser;
+	};
+
 	updateUser = async (id, updatedFields) => {
 		const result = await User.update(updatedFields, {
 			where: {

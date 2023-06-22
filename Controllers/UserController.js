@@ -37,37 +37,49 @@ class UserController {
 	login = async (req, res) => {
 		try {
 			const { username, password } = req.body;
-			const existingUser = await action.login(username, password);
-			if (existingUser !== null) {
-				res.status(201).send({ encontro: true, existingUser });
-			} else {
-				res.status(201).send({ encontro: false });
-			}
+			const user = await action.getByUsername(username);
+			if (!user) throw new Error("El usuario no existe");
+			const hash = await user.validatePassword(password);
+			if (!hash) throw new Error("Contraseña incorrecta");
+
+			//attributes: ["id", "username", "pokedex"],
+			const existingUser = {
+				id: user.id,
+				username: user.username,
+				pokedex: user.pokedex,
+			};
+
+			res.status(201).send({ encontro: true, existingUser });
 		} catch (error) {
-			console.error("Error al buscar el usuario:", error);
-			res.status(500).send({ message: "Error al buscar el usuario" });
+			//console.error("Error al buscar el usuario: ", error);
+			res.status(400).send({ message: error.message });
 		}
 	};
 
-		updateUser = async (req, res) => {
+	updateUser = async (req, res) => {
 		try {
 			const { id } = req.params;
 			const { updatedFields } = req.body;
 			const result = await action.updateUser(id, updatedFields);
 			// tiran null y undefined, no entran bien los parametros.
-			console.log("BACK >", id)
-			console.log("BACK >", updatedFields)
+			console.log("BACK >", id);
+			console.log("BACK >", updatedFields);
 			if (result[0] === 1) {
-				res.send({ message: "Usuario actualizado exitosamente", updated: true });
+				res.send({
+					message: "Usuario actualizado exitosamente",
+					updated: true,
+				});
 			} else {
-				res.send({ message: "No se pudo actualizar el usuario", updated: false });
+				res.send({
+					message: "No se pudo actualizar el usuario",
+					updated: false,
+				});
 			}
 		} catch (error) {
 			console.error("Error al actualizar el usuario:", error);
 			res.status(500).send({ message: "Error al actualizar el usuario" });
 		}
 	};
-
 }
 
 export default UserController;

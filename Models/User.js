@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 class User extends Model {
 	async validatePassword(passwordEnTextoPlano) {
 		const hash = await bcrypt.hash(passwordEnTextoPlano, this.salt);
+		console.log(hash === this.password);
 		return hash === this.password;
 	}
 }
