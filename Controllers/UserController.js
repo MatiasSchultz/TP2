@@ -41,8 +41,6 @@ class UserController {
 			if (!user) throw new Error("El usuario no existe");
 			const hash = await user.validatePassword(password);
 			if (!hash) throw new Error("Contraseña incorrecta");
-
-			//attributes: ["id", "username", "pokedex"],
 			const existingUser = {
 				id: user.id,
 				username: user.username,
