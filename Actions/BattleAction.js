@@ -31,6 +31,16 @@ class BattleAction {
 		});
 		return existingBattle;
 	};
+
+	getAllByUserId = async (id) => {
+		const existingBattle = await Battle.findAll({
+			attributes: ["id", "userID", "userPokemon", "enemyPokemon", "winner"],
+			where: {
+				id,
+			},
+		});
+		return existingBattle;
+	};
 }
 
 export default BattleAction;

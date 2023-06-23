@@ -34,6 +34,17 @@ class BattleController {
 		}
 	};
 
+	getAllbyUserId = async (req, res) => {
+		try {
+			const battles = await action.getAllbyId();
+			if (!battles) throw new error("no se pudo realizar la busqueda");
+			res.send({ message: "get all battles by id ok", battles });
+		} catch (error) {
+			console.error("Error fetching battles:", error);
+			res.status(500).send({ message: "Error fetching users" });
+		}
+	};
+
 	getOne = async (req, res) => {
 		try {
             var urlParams = new URLSearchParams(window.location.search);

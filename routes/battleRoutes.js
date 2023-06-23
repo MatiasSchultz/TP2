@@ -10,4 +10,6 @@ battleRoutes.post("/", battleController.createBattle);
 
 battleRoutes.get("/:id", battleController.getOne);
 
+battleRoutes.get("/:id/all", battleController.getAllbyUserId);
+
 export default battleRoutes;
