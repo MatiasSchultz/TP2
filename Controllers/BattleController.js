@@ -41,7 +41,7 @@ class BattleController {
 
 	getAllbyUserId = async (req, res) => {
 		try {
-			const { id } = req.body;
+			const { id } = req.params;
 			const battles = await action.getAllByUserId(id);
 			if (!battles) throw new error("no se pudo realizar la busqueda");
 			res.send({ message: "get all battles by id ok", battles });
@@ -53,8 +53,7 @@ class BattleController {
 
 	getOne = async (req, res) => {
 		try {
-			var urlParams = new URLSearchParams(window.location.search);
-			var id = urlParams.get("id");
+			const { id } = req.params;
 			const existingBattle = await action.getOne(id);
 			if (existingBattle !== null) {
 				res.status(201).send({ encontro: true, existingBattle });

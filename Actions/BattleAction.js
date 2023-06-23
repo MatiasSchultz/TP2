@@ -32,11 +32,11 @@ class BattleAction {
 		return existingBattle;
 	};
 
-	getAllByUserId = async (id) => {
+	getAllByUserId = async (userID) => {
 		const existingBattle = await Battle.findAll({
 			attributes: ["id", "userID", "userPokemon", "enemyPokemon", "winner"],
 			where: {
-				id,
+				userID,
 			},
 		});
 		return existingBattle;
