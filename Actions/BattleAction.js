@@ -7,7 +7,7 @@ class BattleAction {
 
 	createBattle = async (userID, userPokemon, enemyPokemon, winner) => {
 		const newBattle = await Battle.create({
-			userID,
+			UserId: userID,
 			userPokemon,
 			enemyPokemon,
 			winner,

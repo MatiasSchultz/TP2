@@ -10,7 +10,12 @@ class BattleController {
 	createBattle = async (req, res) => {
 		try {
 			const { userID, userPokemon, enemyPokemon, winner } = req.body;
-			const newBattle = await action.createBattle(userID, userPokemon, enemyPokemon, winner);
+			const newBattle = await action.createBattle(
+				userID,
+				userPokemon,
+				enemyPokemon,
+				winner
+			);
 			if (!newBattle) throw new Error("no se pudo registrar la batalla");
 			res
 				.status(201)
@@ -36,7 +41,8 @@ class BattleController {
 
 	getAllbyUserId = async (req, res) => {
 		try {
-			const battles = await action.getAllbyId();
+			const { id } = req.body;
+			const battles = await action.getAllByUserId(id);
 			if (!battles) throw new error("no se pudo realizar la busqueda");
 			res.send({ message: "get all battles by id ok", battles });
 		} catch (error) {
@@ -47,8 +53,8 @@ class BattleController {
 
 	getOne = async (req, res) => {
 		try {
-            var urlParams = new URLSearchParams(window.location.search);
-            var id = urlParams.get('id');
+			var urlParams = new URLSearchParams(window.location.search);
+			var id = urlParams.get("id");
 			const existingBattle = await action.getOne(id);
 			if (existingBattle !== null) {
 				res.status(201).send({ encontro: true, existingBattle });
