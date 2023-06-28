@@ -13,4 +13,6 @@ userRoutes.post("/login", userController.login);
 
 userRoutes.put("/:id", userController.updateUser);
 
+userRoutes.post("/inPokedex/:id", userController.inPokedex);
+
 export default userRoutes;
