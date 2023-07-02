@@ -4,7 +4,7 @@ import { serverPort } from "./config/config.js";
 import indexRoutes from "./routes/indexRoutes.js";
 import connection from "./connection/connection.js";
 import cors from "cors";
-import userSeed from "./Seed/userSeed.js";
+import userSeed from "./Seed/userSeed.js";	
 
 const corsOptions = {
 	origin: "*",
