@@ -49,7 +49,6 @@ class UserController {
 
 			res.status(201).send({ encontro: true, existingUser });
 		} catch (error) {
-			//console.error("Error al buscar el usuario: ", error);
 			res.status(400).send({ message: error.message });
 		}
 	};
@@ -59,9 +58,6 @@ class UserController {
 			const { id } = req.params;
 			const { updatedFields } = req.body;
 			const result = await action.updateUser(id, updatedFields);
-			// tiran null y undefined, no entran bien los parametros.
-			console.log("BACK >", id);
-			console.log("BACK >", updatedFields);
 			if (result[0] === 1) {
 				res.send({
 					message: "Usuario actualizado exitosamente",
@@ -76,6 +72,27 @@ class UserController {
 		} catch (error) {
 			console.error("Error al actualizar el usuario:", error);
 			res.status(500).send({ message: "Error al actualizar el usuario" });
+		}
+	};
+
+	inPokedex = async (req, res) => {
+		try {
+			const { id } = req.params;
+			const { pokemonId } = req.body;
+			const result = await action.inPokedex(id, pokemonId);
+			if (result) {
+				res.send({
+					message: "El pokemon se encuentra en la pokedex",
+					ok: true,
+				});
+			} else {
+				res.send({
+					message: "El pokemon no se encuentra en la pokedex",
+					ok: false,
+				});
+			}
+		} catch (error) {
+			res.status(500).send({ message: "Error", ok: false });
 		}
 	};
 }

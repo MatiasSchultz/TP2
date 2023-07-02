@@ -41,6 +41,15 @@ class UserAction {
 		return existingUser;
 	};
 
+	getById = async (id) => {
+		const existingUser = await User.findOne({
+			where: {
+				id,
+			},
+		});
+		return existingUser;
+	};
+
 	updateUser = async (id, updatedFields) => {
 		const result = await User.update(updatedFields, {
 			where: {
@@ -50,8 +59,12 @@ class UserAction {
 		return result;
 	};
 
-	nombre = async () => {
-		const valor = "algo";
+	inPokedex = async (id, pokemonId) => {
+		let valor = false;
+		const user = await this.getById(id);
+		if (user && user.pokedex.split(",").includes(pokemonId)) {
+			valor = true;
+		}
 		return valor;
 	};
 }
